@@ -17,7 +17,6 @@
 @media screen and (max-width: 627px) {
   .cards {
     width: 288px;
-    border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
     padding-bottom: 20px;
   }
 

@@ -30,6 +30,8 @@
 }
 
 .profile__description {
+  font-weight: 500;
+  line-height: 1;
   margin: 0;
   opacity: 70%;
   display: -webkit-box;
@@ -41,6 +43,13 @@
 }
 
 .profile__edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #212121;
+  font-weight: 500;
+  line-height: 1;
   margin-top: auto;
   width: fit-content;
   background: transparent;
@@ -55,14 +64,21 @@
 }
 
 .profile__add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   margin-left: auto;
   width: 149px;
   height: 52px;
   background-color: #212121;
-  color: #fff;
+  color: #fcf5e5;
+  font-weight: 500;
+  line-height: 1;
   border-radius: 8px;
   align-self: end;
   transition: opacity 0.3s ease;
+  border: none;
 }
 
 .profile__add-btn:hover {

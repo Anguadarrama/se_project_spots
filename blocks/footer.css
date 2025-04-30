@@ -4,3 +4,11 @@
   justify-content: center;
   padding: 60px 0;
 }
+
+.footer p {
+  color: #212121;
+  opacity: 70%;
+  font-weight: 400;
+  line-height: 1;
+  margin: 0;
+}
