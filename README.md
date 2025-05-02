@@ -24,3 +24,10 @@ This Webpage is deployed to Github Pages
 
 - Deployment Link:
   (Link to webpage)[https://anguadarrama.github.io/se_project_spots/]
+
+## Video of Project
+
+This is the link to my video overview of my spots webpage:
+
+- Video Link:
+  (Link to Video)[https://youtu.be/ZqssDdv19Yg]
