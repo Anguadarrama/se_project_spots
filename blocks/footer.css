@@ -5,7 +5,7 @@
   padding: 60px 0;
 }
 
-.footer p {
+.footer__copyright {
   color: #212121;
   opacity: 70%;
   font-weight: 400;
