@@ -1,6 +1,10 @@
 // Creating an Array with 6 objects in it
 const initialCards = [
   {
+    name: "Golden Gate Bridge",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
+  {
     name: "Val Thorens",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
   },
@@ -50,6 +54,49 @@ const newPostCaptionInput = newPostModal.querySelector("#image-caption-input");
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescritpionEl = document.querySelector(".profile__description");
 
+// Preview Modal Selectors
+const previewModal = document.querySelector("#preview-modal");
+const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
+const previewImageEl = previewModal.querySelector(".modal__image");
+const previewCaption = previewModal.querySelector(".modal__caption");
+// Template Selectors
+const cardTemplate = document
+  .querySelector("#card-template")
+  .content.querySelector(".card");
+const cardsList = document.querySelector(".cards__list");
+
+// Get card template function
+function getCardElement(data) {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardTitleEl = cardElement.querySelector(".card__title");
+  const cardImageEl = cardElement.querySelector(".card__image");
+  const cardLikeEl = cardElement.querySelector(".card__like-btn");
+  const cardDeleteEl = cardElement.querySelector(".card__delete-btn");
+
+  cardImageEl.src = data.link;
+  cardImageEl.alt = data.name;
+  cardTitleEl.textContent = data.name;
+
+  cardLikeEl.addEventListener("click", () => {
+    cardLikeEl.classList.toggle("card__like-btn_active");
+  });
+
+  cardDeleteEl.addEventListener("click", () => {
+    cardElement.remove();
+    cardElement = null;
+  });
+
+  cardImageEl.addEventListener("click", () => {
+    previewImageEl.src = data.link;
+    previewImageEl.alt = data.name;
+    previewCaption.textContent = data.name;
+
+    openModal(previewModal);
+  });
+
+  return cardElement;
+}
+
 // Creating opening and closing modal functions
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
@@ -90,12 +137,20 @@ newPostCloseBtn.addEventListener("click", function () {
   closeModal(newPostModal);
 });
 
+previewModalCloseBtn.addEventListener("click", () => {
+  closeModal(previewModal);
+});
+
 //Handler for New Post form submission
 function handleNewPostSubmit(evt) {
   evt.preventDefault();
 
-  console.log(newPostLinkInput.value);
-  console.log(newPostCaptionInput.value);
+  const inputValues = {
+    name: newPostCaptionInput.value,
+    link: newPostLinkInput.value,
+  };
+  const cardElement = getCardElement(inputValues);
+  cardsList.prepend(cardElement);
 
   closeModal(newPostModal);
 }
@@ -103,7 +158,8 @@ function handleNewPostSubmit(evt) {
 newPostForm.addEventListener("submit", handleNewPostSubmit);
 
 //Looping through the arrray of initial cards and print to console
-initialCards.forEach(function (card) {
-  console.log(card.name);
-  console.log(card.link);
+
+initialCards.forEach(function (item) {
+  const cardElement = getCardElement(item);
+  cardsList.append(cardElement);
 });
