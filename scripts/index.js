@@ -41,6 +41,7 @@ const editProfileNameInput = editProfileModal.querySelector(
 const editProfileDescriptionInput = editProfileModal.querySelector(
   "#profile-description-input"
 );
+const editProfileSaveBtn = editProfileModal.querySelector(".modal__submit-btn");
 
 // New Post Modal Declarations
 const newPostBtn = document.querySelector(".profile__add-btn");
@@ -54,7 +55,7 @@ const newPostCaptionInput = newPostModal.querySelector("#image-caption-input");
 
 // Selectors of Profile information
 const profileNameEl = document.querySelector(".profile__name");
-const profileDescritpionEl = document.querySelector(".profile__description");
+const profileDescriptionEl = document.querySelector(".profile__description");
 
 // Preview Modal Selectors
 const previewModal = document.querySelector("#preview-modal");
@@ -121,7 +122,7 @@ function closeModal(modal) {
 // Event Listeners for edit profile modal
 editProfileBtn.addEventListener("click", function () {
   editProfileNameInput.value = profileNameEl.textContent;
-  editProfileDescriptionInput.value = profileDescritpionEl.textContent;
+  editProfileDescriptionInput.value = profileDescriptionEl.textContent;
   resetValidation(
     editProfileForm,
     [editProfileNameInput, editProfileDescriptionInput],
@@ -129,8 +130,11 @@ editProfileBtn.addEventListener("click", function () {
   );
   openModal(editProfileModal);
 });
-
 editCloseBtn.addEventListener("click", function () {
+  closeModal(editProfileModal);
+});
+
+editProfileSaveBtn.addEventListener("click", function () {
   closeModal(editProfileModal);
 });
 
@@ -138,7 +142,7 @@ editCloseBtn.addEventListener("click", function () {
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
   profileNameEl.textContent = editProfileNameInput.value;
-  profileDescritpionEl.textContent = editProfileDescriptionInput.value;
+  profileDescriptionEl.textContent = editProfileDescriptionInput.value;
   disabledButton(cardSubmitBtn, settings);
   closeModal(editProfileModal);
 }
@@ -147,11 +151,11 @@ editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
 // Event Listeners for new post modal
 newPostBtn.addEventListener("click", function () {
-  resetValidation(
-    newPostForm,
-    [newPostLinkInput, newPostCaptionInput],
-    settings
-  );
+  // resetValidation(
+  //   newPostForm,
+  //   [newPostLinkInput, newPostCaptionInput],
+  //   settings
+  // );
   openModal(newPostModal);
 });
 
