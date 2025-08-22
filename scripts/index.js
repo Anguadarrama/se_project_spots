@@ -48,6 +48,7 @@ const newPostSubmitBtn = document.querySelector(".modal__submit-btn");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 const newPostForm = newPostModal.querySelector(".modal__form");
+const cardSubmitBtn = newPostModal.querySelector(".modal__submit-btn");
 const newPostLinkInput = newPostModal.querySelector("#card-image-input");
 const newPostCaptionInput = newPostModal.querySelector("#image-caption-input");
 
@@ -65,6 +66,9 @@ const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
 const cardsList = document.querySelector(".cards__list");
+
+// All Modals Selectors
+const allModals = document.querySelectorAll(".modal");
 
 // Get card template function
 function getCardElement(data) {
@@ -98,19 +102,32 @@ function getCardElement(data) {
 }
 
 // Creating opening and closing modal functions
+let activeModal = null;
+
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
+  activeModal = modal;
+
+  window.addEventListener("keydown", escapeKeyEnabled);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
+  activeModal = null;
+
+  window.removeEventListener("keydown", escapeKeyEnabled);
 }
 
 // Event Listeners for edit profile modal
 editProfileBtn.addEventListener("click", function () {
-  openModal(editProfileModal);
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescritpionEl.textContent;
+  resetValidation(
+    editProfileForm,
+    [editProfileNameInput, editProfileDescriptionInput],
+    settings
+  );
+  openModal(editProfileModal);
 });
 
 editCloseBtn.addEventListener("click", function () {
@@ -122,7 +139,7 @@ function handleEditProfileSubmit(evt) {
   evt.preventDefault();
   profileNameEl.textContent = editProfileNameInput.value;
   profileDescritpionEl.textContent = editProfileDescriptionInput.value;
-
+  disabledButton(cardSubmitBtn, settings);
   closeModal(editProfileModal);
 }
 
@@ -130,6 +147,11 @@ editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
 // Event Listeners for new post modal
 newPostBtn.addEventListener("click", function () {
+  resetValidation(
+    newPostForm,
+    [newPostLinkInput, newPostCaptionInput],
+    settings
+  );
   openModal(newPostModal);
 });
 
@@ -152,9 +174,9 @@ function handleNewPostSubmit(evt) {
   };
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
-
-  closeModal(newPostModal);
   newPostForm.reset();
+  disabledButton(cardSubmitBtn, settings);
+  closeModal(newPostModal);
 }
 
 newPostForm.addEventListener("submit", handleNewPostSubmit);
@@ -165,3 +187,19 @@ initialCards.forEach(function (item) {
   const cardElement = getCardElement(item);
   cardsList.append(cardElement);
 });
+
+// Refining UX for Modals to close when clicked outside Modals using loop and eventListener
+allModals.forEach((modal) => {
+  modal.addEventListener("click", function (evt) {
+    if (evt.target.classList.contains("modal")) {
+      closeModal(modal);
+    }
+  });
+});
+
+// Function that will enable the Escape Key functionality when modals are open
+function escapeKeyEnabled(evt) {
+  if (evt.key === "Escape" && activeModal) {
+    closeModal(activeModal);
+  }
+}
