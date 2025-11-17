@@ -1,3 +1,9 @@
+import {
+  enableValidation,
+  settings,
+  resetValidation,
+} from "../scripts/validation.js";
+
 // Creating an Array with 6 objects in it
 const initialCards = [
   {
