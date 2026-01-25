@@ -30,4 +30,4 @@ This Webpage is deployed to Github Pages
 This is the link to my video overview of my spots webpage:
 
 - Video Link:
-  (Link to Video)[https://youtu.be/ZqssDdv19Yg]
+  (Link to Video)[https://drive.google.com/file/d/1w_anAF6PPOeYeQSt29oySKqiAQ2bkbsv/view?usp=sharing]
