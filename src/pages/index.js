@@ -292,6 +292,7 @@ function handleAvatarSubmit(evt) {
   //Change text content to loading
   const submitBtn = evt.submitter;
   setButtonText(submitBtn, true);
+  // closeModal(avatarModal)
 
   api
     .editAvatarInfo(avatarInput.value)
@@ -300,7 +301,7 @@ function handleAvatarSubmit(evt) {
 
       avatarModalForm.reset();
       avatarModalBtn;
-      closeModal(avatarModalSubmitBtn, settings);
+      closeModal(avatarModal, settings);
     })
     .catch(console.error)
     .finally(() => {
