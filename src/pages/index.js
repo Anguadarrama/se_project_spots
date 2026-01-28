@@ -89,8 +89,12 @@ const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 const deleteModal = document.querySelector("#delete-modal");
 const deleteModalForm = deleteModal.querySelector(".modal__form");
 const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
+const deleteModalCancelBtn = deleteModal.querySelector(".modal__btn");
 
 deleteModalCloseBtn.addEventListener("click", () => {
+  closeModal(deleteModal);
+});
+deleteModalCancelBtn.addEventListener("click", () => {
   closeModal(deleteModal);
 });
 
@@ -257,11 +261,12 @@ function handleNewPostSubmit(evt) {
     })
     .then((data) => {
       console.log(data);
+      const cardElement = getCardElement(data);
       const inputValues = {
         name: data.name,
         link: data.link,
       };
-      const cardElement = getCardElement(inputValues);
+      // const cardElement = getCardElement(inputValues);
       cardsList.prepend(cardElement);
       newPostForm.reset();
       disabledButton(cardSubmitBtn, settings);
@@ -300,7 +305,7 @@ function handleAvatarSubmit(evt) {
       profileAvatarEl.src = data.avatar;
 
       avatarModalForm.reset();
-      avatarModalBtn;
+      disabledButton(avatarModalBtn, settings);
       closeModal(avatarModal, settings);
     })
     .catch(console.error)
