@@ -36,10 +36,10 @@ const editProfileModal = document.querySelector("#edit-profile-modal");
 const editCloseBtn = editProfileModal.querySelector(".modal__close-btn");
 const editProfileForm = editProfileModal.querySelector(".modal__form");
 const editProfileNameInput = editProfileModal.querySelector(
-  "#profile-name-input"
+  "#profile-name-input",
 );
 const editProfileDescriptionInput = editProfileModal.querySelector(
-  "#profile-description-input"
+  "#profile-description-input",
 );
 const editProfileSaveBtn = editProfileModal.querySelector(".modal__submit-btn");
 const avatarModalBtn = document.querySelector(".profile__avatar-btn");
@@ -150,7 +150,7 @@ function getCardElement(data) {
   cardLikeEl.addEventListener("click", (evt) => handleCardLike(evt, data._id));
 
   cardDeleteEl.addEventListener("click", (evt) =>
-    handleDeleteCard(cardElement, data._id)
+    handleDeleteCard(cardElement, data._id),
   );
 
   cardImageEl.addEventListener("click", () => {
@@ -188,7 +188,7 @@ editProfileBtn.addEventListener("click", function () {
   resetValidation(
     editProfileForm,
     [editProfileNameInput, editProfileDescriptionInput],
-    settings
+    settings,
   );
   openModal(editProfileModal);
 });
@@ -305,7 +305,7 @@ function handleAvatarSubmit(evt) {
       profileAvatarEl.src = data.avatar;
 
       avatarModalForm.reset();
-      disabledButton(avatarModalBtn, settings);
+      disabledButton(avatarModalSubmitBtn, settings);
       closeModal(avatarModal, settings);
     })
     .catch(console.error)
