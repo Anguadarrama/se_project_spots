@@ -24,6 +24,25 @@
   transition-delay: 0s;
 }
 
+.modal__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 156px;
+  width: 100%;
+  border-radius: 8px;
+  background-color: #212121;
+  color: #fcf5e5;
+  padding: 18px 32px;
+  border: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal__btn:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
+
 .modal__container {
   box-sizing: border-box;
   max-width: 730px;
@@ -177,6 +196,59 @@
   line-height: 1;
 }
 
+#delete-modal {
+  margin: 0;
+}
+
+#delete-modal-container {
+  max-width: 640px;
+  padding: 32px 20px;
+}
+
+#delete-modal-title {
+  font-size: 24px;
+  text-align: center;
+}
+
+#delete-modal-cls-btn {
+  top: 0px;
+  right: -50px;
+  opacity: 100%;
+}
+
+#delete-modal-delete-btn {
+  background-color: #ff6565;
+  color: #212121;
+}
+
+#delete-modal-cancel-btn {
+  background-color: #fff;
+  color: #212121;
+  border: 1px solid #212121;
+}
+
+#delete-form {
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 156px);
+  padding: 0;
+  margin: 0;
+  gap: 20px 32px;
+}
+
+#delete-modal-delete-btn:hover {
+  cursor: pointer;
+  background-color: #ff3333;
+  opacity: 100%;
+}
+
+#delete-modal-cancel-btn:hover {
+  cursor: pointer;
+  background-color: #212121;
+  color: #fff;
+  opacity: 100%;
+}
+
 @media screen and (max-width: 480px) {
   .modal__container {
     padding: 22px 12px 12px;
@@ -216,5 +288,12 @@
 
   .modal__image {
     max-width: unset;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #delete-modal-cls-btn {
+    right: 6px;
+    top: -52px;
   }
 }
